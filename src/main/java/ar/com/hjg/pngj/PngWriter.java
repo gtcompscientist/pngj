@@ -369,8 +369,12 @@ public class PngWriter {
    * Writes the full set of row. The ImageLineSet should contain (allow to acces) imgInfo.rows
    */
   public void writeRows(IImageLineSet<? extends IImageLine> imglines) {
-    for (int i = 0; i < imgInfo.rows; i++)
-      writeRow(imglines.getImageLineRawNum(i));
+    for (int i = 0; i < imgInfo.rows; i++) {
+      IImageLine line = imglines.getImageLineRawNum(i);
+      if (line == null)
+        continue;
+      writeRow(line);
+    }
   }
 
   public void writeRow(IImageLine imgline, int rownumber) {

@@ -70,8 +70,10 @@ public abstract class ImageLineSetDefault<T extends IImageLine> implements IImag
   public T getImageLineRawNum(int r) {
     if (singleCursor)
       return imageLine;
-    else
+    else if (r < imageLines.size())
       return imageLines.get(r);
+    else
+      return null;
   }
 
   /**
